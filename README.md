@@ -1,8 +1,4 @@
 # Homework4
-
-Welcome to the homework repository.
-
-# Homework4
 Codebook
 
 Purpose:
