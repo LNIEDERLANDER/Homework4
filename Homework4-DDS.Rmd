@@ -1,0 +1,118 @@
+---
+title: "FiveThirtyEight"
+author: "Laura Niederlander"
+date: "June 4, 2018"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r echo=TRUE}
+#install.packages("fivethirtyeight")
+
+library(fivethirtyeight)
+
+# If you haven't installed the remotes package yet, do so:
+data(package = "fivethirtyeight")
+
+```
+
+
+
+
+
+
+```{r}
+
+library(fivethirtyeight)
+
+# Bechdel data set (note that data is lazy loaded so one can also just access `bechdel` without running `data(bechdel)`):
+data(bechdel)
+head(bechdel)
+?bechdel
+# If using RStudio:
+View(bechdel)
+
+
+```
+
+```{r}
+library(dplyr)
+df <- fivethirtyeight::classic_rock_raw_data
+
+head(select(df, artist:callsign))
+
+str(df)
+dim(df)
+ls(df)
+
+
+```
+
+
+
+```{r}
+ls(df)
+ncol(df)
+
+
+```
+
+
+```{r}
+# Generate count of each unique major_category in df.
+library(dplyr)
+library(mosaic)
+
+major_category = sapply(df, function(x) length(unique(x)))
+major_category
+
+artist_count <- df %>% 
+   count(artist)
+
+song_count <- df %>% 
+  count(song) 
+
+callsign_count <- df %>% 
+  count(callsign) 
+
+
+major_count <- (cbind.data.frame(callsign_count))
+  
+
+major_count
+
+
+
+```
+
+
+
+
+
+```{r}
+library(ggplot2)
+
+  
+barplot(major_count$n, main= "Call Sign Stations Count", xlab = "Call Sign Stations", ylab="Count", col = 2) 
+
+
+
+
+#use par(las-2) before the plot the test perpendicular to the axis
+# Make a barplot of Major_Count. 
+# Make a label
+# Make labels for x and y and color
+#assign the major_cat label 
+#flip the barplot horizon extend to right
+
+```
+
+```{r}
+write.csv(major_count, row.names=FALSE)
+
+```
+
+
+
+
